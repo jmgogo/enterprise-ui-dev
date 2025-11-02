@@ -18,3 +18,16 @@ test(
     expect(currentCount).toHaveTextContent('1');
   },
 );
+
+test(
+  'it should increment when the "Increment" button is pressed (by a user)',
+  async () => {
+    const user = userEvent.setup();
+    render(<Counter />);
+    const currentCount = screen.getByTestId('current-count')
+    expect(currentCount).toHaveTextContent('0');
+    const button = screen.getByRole('button', { name: 'Increment' });
+    await user.click(button);
+    expect(currentCount).toHaveTextContent('1');
+  },
+);
